@@ -18,6 +18,7 @@ public class ExampleSceneCubeSpawner : MonoBehaviour
         {
             count = 0;
           var g=  GameObject.CreatePrimitive(PrimitiveType.Cube);
+          g.transform.SetParent(transform);
           g.transform.position = transform.position;
           g.transform.rotation=new Quaternion(Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f));
           g.AddComponent<ExampleSceneCube>();

@@ -10,7 +10,8 @@ public class ExampleSceneCube : MonoBehaviour
     {
         gameObject.AddComponent<Rigidbody>();
         gameObject.AddComponent<BoxCollider>();
-        GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value, 1.0f); ;
+        GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value, 1.0f);
+        tag = "Cube";
 
     }
 
@@ -20,8 +21,7 @@ public class ExampleSceneCube : MonoBehaviour
         if (count >= 150+Random.Range(0,100))
         {
             count = 0;
-            GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value, 1.0f);
-            
+            GetComponent<Rigidbody>().AddForce(Vector3.up*100);
         }
 
         count++;
@@ -30,5 +30,13 @@ public class ExampleSceneCube : MonoBehaviour
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Cube")
+        {
+            GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value, 1.0f);
+        }
     }
 }
